@@ -1,6 +1,6 @@
 "use client";
-import {useState} from 'react'
 
+import {useState} from 'react'
 import {SearchManufacturer} from '@/components'
 
 const SearchBar = () => {
@@ -13,7 +13,7 @@ const SearchBar = () => {
       <div className="search__bar-item">
               <SearchManufacturer
                   manufacturer={manufacturer}
-                  setManufacture={setManufacturer}
+                  setManufacturer={setManufacturer}
               />
       </div>
     </form>

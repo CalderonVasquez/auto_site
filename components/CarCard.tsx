@@ -4,7 +4,7 @@ import { useState } from "react";
 import Image from "next/image";
 import { CarProps } from "@/types";
 import { CustomButton, CarDetails } from "@/components";
-import { calculateCarRent } from "@/utils";
+import { calculateCarRent, generateCarImageUrl } from "@/utils";
 
 interface CarCardProps {
   car: CarProps;
@@ -30,12 +30,12 @@ const CarCard = ({ car }: CarCardProps) => {
       </p>
       <div className="relative w-full h-40 my-3 object-contain">
         <Image
-          src="/hero.png"
-          alt="car image"
+          src={generateCarImageUrl(car)}
+          alt="car model"
           fill
           priority
           className="object-contain"
-        />
+        /> 
       </div>
       <div className="relative w-full mt-2">
         <div className="flex group-hover:invisible w-full justify-between text-gray">
@@ -51,39 +51,29 @@ const CarCard = ({ car }: CarCardProps) => {
             </p>
           </div>
           <div className="car-card__icon">
-            <Image
-              src="/tire.svg"
-              alt="tire"
-              width={20}
-              height={20}
-            />
-            <p className="car-card__icon-text">
-              {drive.toUpperCase()}
-            </p>
+            <Image src="/tire.svg" alt="tire" width={20} height={20} />
+            <p className="car-card__icon-text">{drive.toUpperCase()}</p>
           </div>
           <div className="car-card__icon">
-            <Image
-              src="/gas.svg"
-              alt="gas"
-              width={20}
-              height={20}
-            />
-            <p className="car-card__icon-text">
-              {combination_mpg}
-            </p>
+            <Image src="/gas.svg" alt="gas" width={20} height={20} />
+            <p className="car-card__icon-text">{combination_mpg}</p>
           </div>
-              </div>
-              <div className="car-card__btn-container">
-                  <CustomButton
-                      title="View More"
-                      containerStyles="w-full py-[16px] rounded-full bg-primary-blue"
-                      textStyles="text-white text-[14px] leading-[17px] font-bold"
-                      rightIcon="/right-arrow.svg"
-                      handleClick={() => setIsOpen(true)}
-                  />
-              </div>
+        </div>
+        <div className="car-card__btn-container">
+          <CustomButton
+            title="View More"
+            containerStyles="w-full py-[16px] rounded-full bg-primary-blue"
+            textStyles="text-white text-[14px] leading-[17px] font-bold"
+            rightIcon="/right-arrow.svg"
+            handleClick={() => setIsOpen(true)}
+          />
+        </div>
       </div>
-      <CarDetails isOpen={isOpen} closeModal={() => setIsOpen(false)} car={car} />
+      <CarDetails
+        isOpen={isOpen}
+        closeModal={() => setIsOpen(false)}
+        car={car}
+      />
     </div>
   );
 };
